@@ -6,7 +6,7 @@ import java.util.*;
 
 public class CountWords {
     public static void main(String[] args) throws Exception {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("/home/usa/Projects/CountWords/words.txt"));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("/home/usa/Projects/CountWord/words.txt"));
         Map<String, Integer> map = new HashMap<>();
         String line, word = "";
         List<String> stringList = new ArrayList<>();
@@ -36,7 +36,7 @@ public class CountWords {
         });
         System.out.println(stringList.size());
         for (Map.Entry item : map.entrySet()) {
-            System.out.println(item.getKey() + "   " + item.getValue());
+            System.out.println(item.getKey() + ":" + item.getValue());
         }
     }
 }
