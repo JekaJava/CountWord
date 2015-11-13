@@ -21,16 +21,20 @@ public class CountWords {
         }
 
 
-
-        List list = new ArrayList(map.entrySet());
+        List<Map.Entry<String, Integer>> list = new ArrayList(map.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
             public int compare(Map.Entry<String, Integer> a, Map.Entry<String, Integer> b) {
-                return a.getValue().compareTo(b.getValue());
+                int value = a.getKey().compareTo(b.getKey());
+                if ( value == 0) {
+                    return value;
+                } else {
+                    return b.getValue().compareTo(a.getValue());
+                }
             }
         });
-        for (Map.Entry item : map.entrySet()) {
-            System.out.println(item.getKey() + ":" + item.getValue());
+        for (Object i : list) {
+            System.out.println(i);
         }
     }
     public static Map<String, Integer> mapPut (String e) {
