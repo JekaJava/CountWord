@@ -5,28 +5,23 @@ import java.io.FileReader;
 import java.util.*;
 
 public class CountWords {
+    public static Map<String, Integer> map = new HashMap<>();
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("/home/usa/Projects/CountWord/words.txt"));
-        Map<String, Integer> map = new HashMap<>();
         String line, word = "";
-        List<String> stringList = new ArrayList<>();
         while ((line = bufferedReader.readLine()) != null) {
             for (Character item : line.toCharArray() ) {
                 if ( Character.isLetter(item)) {
                     word += Character.toLowerCase(item);
                 } else if (word.length() != 0){
-                    stringList.add(word);
+                    mapPut(word);
                     word = "";
                 }
             }
         }
-        for (String e : stringList) {
-            if ( map.containsKey(e)) {
-                map.put(e, map.get(e) + 1);
-            } else {
-                map.put(e, 1);
-            }
-        }
+
+
+
         List list = new ArrayList(map.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
@@ -34,9 +29,16 @@ public class CountWords {
                 return a.getValue().compareTo(b.getValue());
             }
         });
-        System.out.println(stringList.size());
         for (Map.Entry item : map.entrySet()) {
             System.out.println(item.getKey() + ":" + item.getValue());
         }
+    }
+    public static Map<String, Integer> mapPut (String e) {
+        if ( map.containsKey(e)) {
+            map.put(e, map.get(e) + 1);
+        } else {
+            map.put(e, 1);
+        }
+        return map;
     }
 }
